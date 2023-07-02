@@ -29,9 +29,9 @@ def patient_data():
 
 @app.route('/selection_page')
 def selection_page():
-    return ('selection_page.html')
+    return render_template('selection_page.html')
 
 @app.route('/karloson_consultation')
 def doctor_consultation():
-    return ('karloson.html')
+    return render_template('karloson.html')
 
