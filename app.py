@@ -4,8 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 
-
-
 app = Flask(__name__)
 app.config.from_object(Configuration)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///medicalDB.db'
@@ -20,6 +18,7 @@ class Users(db.Model):
 
     def __repr__(self):
         return f"<users {self.id}>"
+
 
 class Profiles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
