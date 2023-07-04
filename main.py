@@ -1,5 +1,9 @@
-from app import app
+from app import app, db
 import view
 
+
 if __name__ == '__main__':
-    app.run()
+    from view import app
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
