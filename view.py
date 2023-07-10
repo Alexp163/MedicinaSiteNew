@@ -1,13 +1,14 @@
 from app import app
 from flask import render_template
-from app import Users
+from app import Users, Profiles
 
 
 @app.route('/')
 def index():
     name = 'Ivan'
-
     print(Users.query.all())
+    print(Profiles.query.all())
+
     return render_template('single.html', n=name)
 
 

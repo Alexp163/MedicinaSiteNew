@@ -1,13 +1,13 @@
-from flask import Flask
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, render_template, request
 from config import Configuration
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from flask import render_template
 
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///medicalDB.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///medicalDB.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -35,7 +35,33 @@ class Profiles(db.Model):
     def __repr__(self):
         return f"<profiles {self.id}>"
 
+
+@app.route('/')
+def index():
+    return render_template('index.html', title='Главная')
+
+
+@app.route('/register', methods=('POST', 'GET'))
+def register():
+    if request.method == "POST":
+        # try:
+        hash = generate_password_hash(request.form['psw'])
+        u = Users(email=request.form['email'], psw=hash)
+        db.session.add(u)
+        db.session.flush()
+
+        p = Profiles(name=request.form['name'], old=request.form['old'],
+                     city=request.form['city'], user_id=u.id)
+        db.session.add(p)
+        db.session.commit()
+        # except:
+        #     db.session.rollback()
+        #     print("Ошибка добавления в БД")
+
+    return render_template('register.html', title='Регистрация')
+
 with app.app_context():
+    print(f'  я юзер {Users.query.all()}')
     db.create_all()
 
 
