@@ -8,6 +8,15 @@ def index():
     name = 'Ivan'
     return render_template('single.html', n=name)
 
+@app.route('/consultation/<string:surname>')
+def karsonov_consultation():
+    return render_template('karsonov.html')
+# def people_and_cars(surname):
+#     if surname == 'karsonov':
+#         return render_template('karsonov.html')
+#     elif surname == 'jigunova':
+#         return render_template('jigunova.html')
+
 
 @app.route('/select_action')
 def select_action():
@@ -39,14 +48,14 @@ def selection_page():
     return render_template('selection_page.html')
 
 
-@app.route('/karloson_consultation')
-def karsonov_consultation():
-    return render_template('karsonov.html')
-
-
-@app.route('/jigunova_consultation')
-def jigun_consultation():
-    return render_template('jigunova.html')
+# @app.route('/karloson_consultation')
+# def karsonov_consultation():
+#     return render_template('karsonov.html')
+#
+#
+# @app.route('/jigunova_consultation')
+# def jigun_consultation():
+#     return render_template('jigunova.html')
 
 
 @app.route('/sapeturov_consultation')
