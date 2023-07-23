@@ -64,34 +64,3 @@ def patient_data():
 @app.route('/selection_page')
 def selection_page():
     return render_template('selection_page.html')
-
-
-# @app.route('/karloson_consultation')
-# def karsonov_consultation():
-#     return render_template('karsonov.html')
-#
-#
-# @app.route('/jigunova_consultation')
-# def jigun_consultation():
-#     return render_template('jigunova.html')
-
-
-@app.route('/sapeturov_consultation')
-def sapetur_consultation():
-    return render_template('sapeturov.html')
-
-
-@app.route('/kuznetsov_consultation')
-def kuznets_consultation():
-    return render_template('kuznetsov.html')
-
-
-@app.route('/sokolova_consultation')
-def sokolova_consultation():
-    return render_template('sokolova.html')
-
-
-@app.route('/zapolskyi_consultation')
-def zapolskyi_consultation():
-    return render_template('zapolskyi.html')
-
