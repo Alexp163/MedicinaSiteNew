@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Консультация, врач {{ name_surname }}</title>
+</head>
+<body>
+    <h1>Запись к врачу: {{ name_surname }}</h1>
+    <table>
+        <form>
+            {% for t in times %}
+            <tr>
+                {% if t in free_hours %}
+                    <td><label for="name">Время: <b>{{ t }}</b> Ф.И.О. Пациента</label></td>
+                    <td><input type="text" id="name" /></td>
+                    <td><label for="email">Вид услуги</label></td>
+                    <td><input type="email" id="email" /></td>
+                    <td><label for="telnum">Телефон пациента</label></td>
+                    <td><input type="telnum" id="telnum" /></td>
+                    <td><input type="submit" value="Записать"/></td>
+                {% else %}
+                    <td><label for="name">Время: <b>{{ t }}</b> Ф.И.О. Пациента</label></td>
+                    <td><input disabled type="text" id="name" /></td>
+                    <td><label for="email">Вид услуги</label></td>
+                    <td><input disabled type="email" id="email" /></td>
+                    <td><label for="telnum">Телефон пациента</label></td>
+                    <td><input disabled type="telnum" id="telnum" /></td>
+                    <td><input disabled type="submit" value="Записать"/></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </form>
+    </table>
+
+</body>
+</html>

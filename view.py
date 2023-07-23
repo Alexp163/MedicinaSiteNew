@@ -1,21 +1,31 @@
 from app import app
 from flask import render_template
 
+doctors = {
+    'karsonov': 'Карсонов Максим Петрович',
+    'jigunova': 'Жигунова Карина Аркадьевна',
+}
 
+doctors_times = {
+    'karsonov': ["08:00", "09:30",  "10:30", ],
+    'jigunova': ["10:00", "10:30", "11:00"],
+}
 
+times = ["08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00"]
 @app.route('/')
 def index():
     name = 'Ivan'
     return render_template('single.html', n=name)
 
 @app.route('/consultation/<string:surname>')
-def karsonov_consultation():
-    return render_template('karsonov.html')
-# def people_and_cars(surname):
-#     if surname == 'karsonov':
-#         return render_template('karsonov.html')
-#     elif surname == 'jigunova':
-#         return render_template('jigunova.html')
+def karsonov_consultation(surname):
+    if surname not in doctors:
+        return "Врач не найден"
+
+    fio = doctors[surname]
+    free_hours = doctors_times[surname]
+
+    return render_template('doctor_page.html', name_surname=fio, times=times,free_hours=free_hours)
 
 
 @app.route('/select_action')
@@ -76,6 +86,4 @@ def sokolova_consultation():
 @app.route('/zapolskyi_consultation')
 def zapolskyi_consultation():
     return render_template('zapolskyi.html')
-
-
 
