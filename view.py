@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template
-from forms import RegisterForm
+from forms import RegisterForm, AutoriserForm
 
 doctors = {
     'karsonov': 'Карсонов Максим Петрович',
@@ -49,7 +49,8 @@ def admin_select():
 
 @app.route('/autorization_user')
 def autorization_user():
-    return render_template('authorization.html')
+    autorizer_form = AutoriserForm()
+    return render_template('authorization.html', form=autorizer_form)
 
 
 @app.route('/registration_user')

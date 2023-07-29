@@ -7,3 +7,9 @@ class RegisterForm(FlaskForm):
     password = PasswordField("Пароль")
     password_repeat = PasswordField("Повторите пароль")
     submit = SubmitField("Войти")
+
+
+class AutoriserForm(FlaskForm):
+    nickname = StringField("Никнейм")
+    password = PasswordField("Пароль")
+    submit = SubmitField("Войти")
