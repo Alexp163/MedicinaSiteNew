@@ -47,16 +47,29 @@ def admin_select():
     return render_template('admin_select.html')
 
 
-@app.route('/autorization_user')
+@app.route('/autorization_user', methods=["GET", "POST"])
 def autorization_user():
     autorizer_form = AutoriserForm()
     return render_template('authorization.html', form=autorizer_form)
 
 
-@app.route('/registration_user')
+@app.route('/registration_user', methods=["GET", "POST"])
 def registration_user():
-    register_form = RegisterForm()
-    return render_template('registration.html', form=register_form)
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        print("Данные пришли: ")
+        print(form.nickname.data)
+        print(form.nickname.data)
+        print(form.password.data)
+        print(form.password_repeat.data)
+
+        if form.password.data == form.password_repeat.data:
+            return "Проверьте почту и подтвердите регистрацию"
+        else:
+            return "Пароли не совпадают!"
+
+    return render_template('registration.html', form=form)
 
 
 @app.route('/patient_data')
