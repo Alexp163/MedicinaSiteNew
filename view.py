@@ -21,6 +21,14 @@ doctors_times = {
 }
 
 times = ["08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30"]
+
+
+users = {
+    "admin": "qwerty12345",
+    "user": "q12345"
+}
+
+
 @app.route('/')
 def index():
     name = 'Ivan'
@@ -50,7 +58,21 @@ def admin_select():
 @app.route('/autorization_user', methods=["GET", "POST"])
 def autorization_user():
     autorizer_form = AutoriserForm()
+
+    if autorizer_form.validate_on_submit():
+        print("Данные введены: ")
+        print(autorizer_form.nickname.data)
+        print(autorizer_form.password.data)
+
+        if autorizer_form.nickname.data in users and autorizer_form.password.data == users.get(autorizer_form.nickname.data):
+            return "Пользователь авторизован!"
+        else:
+            return "Логин или пароль не корректны!"
+
     return render_template('authorization.html', form=autorizer_form)
+
+
+
 
 
 @app.route('/registration_user', methods=["GET", "POST"])
@@ -65,6 +87,7 @@ def registration_user():
         print(form.password_repeat.data)
 
         if form.password.data == form.password_repeat.data:
+            users[form.nickname.data] = form.password.data
             return "Проверьте почту и подтвердите регистрацию"
         else:
             return "Пароли не совпадают!"
