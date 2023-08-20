@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template
-from forms import RegisterForm, AutoriserForm
+from forms import RegisterForm, AutoriserForm, MakeAppointment
 
 doctors = {
     'karsonov': 'Карсонов Максим Петрович',
@@ -36,13 +36,16 @@ def index():
 
 @app.route('/consultation/<string:surname>')
 def karsonov_consultation(surname):
+    MakeAppointment_form = MakeAppointment()
     if surname not in doctors:
         return "Врач не найден"
 
     fio = doctors[surname]
     free_hours = doctors_times[surname]
 
-    return render_template('doctor_page.html', name_surname=fio, times=times,free_hours=free_hours)
+
+    return render_template('doctor_page.html', form=MakeAppointment_form,
+                           name_surname=fio, times=times,free_hours=free_hours)
 
 
 @app.route('/select_action')
@@ -103,3 +106,4 @@ def patient_data():
 @app.route('/selection_page')
 def selection_page():
     return render_template('selection_page.html')
+

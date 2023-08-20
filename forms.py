@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TelField
 
 
 class RegisterForm(FlaskForm):
@@ -13,3 +13,12 @@ class AutoriserForm(FlaskForm):
     nickname = StringField("Никнейм")
     password = PasswordField("Пароль")
     submit = SubmitField("Войти")
+
+
+class MakeAppointment(FlaskForm):
+    name = StringField("Ф.И.О. Пациента")
+    service = StringField("Вид услуги")
+    telnum = TelField("Телефон пациента")
+    submit = SubmitField("Записать")
+
+
