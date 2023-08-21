@@ -19,12 +19,12 @@
                     <td>{{ form.telnum(id="telnum") }}</td>
                     <td>{{ form.submit(value="Записать") }}</td>
                 {% else %}
-                    <td><label for="name">Время: <b>{{ t }}</b> Ф.И.О. Пациента</label></td>
-                    <td><input disabled type="text" id="name" /></td>
-                    <td><label for="text">Вид услуги</label></td>
-                    <td><input disabled type="email" id="email" /></td>
-                    <td><label for="telnum">Телефон пациента</label></td>
-                    <td><input disabled type="telnum" id="telnum" /></td>
+                    <td>Время: <b>{{ t }}</b>{{ form.name.label }}</td>
+                    <td>{{ form.name(id="name", disabled=True) }}</td>
+                    <td>{{ form.service.label }}</td>
+                    <td>{{ form.service(id="email", disabled=True) }}</td>
+                    <td>{{ form.telnum.label }}</td>
+                    <td>{{ form.telnum(id="telnum", disabled=True) }}</td>
                     <td>{{ form.submit(value="Записать",disabled=True) }}</td>
                 {% endif %}
             </tr>
