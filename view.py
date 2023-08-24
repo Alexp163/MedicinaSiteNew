@@ -34,7 +34,7 @@ def index():
     name = 'Ivan'
     return render_template('single.html', n=name)
 
-@app.route('/consultation/<string:surname>')
+@app.route('/consultation/<string:surname>', methods=["GET", "POST"])
 def karsonov_consultation(surname):
     MakeAppointment_form = MakeAppointment()
     if surname not in doctors:
@@ -42,7 +42,12 @@ def karsonov_consultation(surname):
 
     fio = doctors[surname]
     free_hours = doctors_times[surname]
-
+    if MakeAppointment_form.validate_on_submit():
+        print(MakeAppointment_form.time.data)
+        print(MakeAppointment_form.name.data)
+        print(MakeAppointment_form.service.data)
+        print(MakeAppointment_form.telnum.data)
+        free_hours.remove(MakeAppointment_form.time.data)
 
     return render_template('doctor_page.html', form=MakeAppointment_form,
                            name_surname=fio, times=times,free_hours=free_hours)

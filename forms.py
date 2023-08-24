@@ -16,9 +16,8 @@ class AutoriserForm(FlaskForm):
 
 
 class MakeAppointment(FlaskForm):
+    time = StringField("Время")
     name = StringField("Ф.И.О. Пациента")
     service = StringField("Вид услуги")
     telnum = TelField("Телефон пациента")
     submit = SubmitField("Записать")
-
-

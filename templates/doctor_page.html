@@ -7,10 +7,12 @@
 <body>
     <h1>Запись к врачу: {{ name_surname }}</h1>
     <table>
-        <form>
+        <form method="post">
+            {{ form.hidden_tag() }}
             {% for t in times %}
             <tr>
                 {% if t in free_hours %}
+                    {{ form.time(value=t, type="hidden", hidden=True) }}
                     <td>Время: <b>{{ t }}</b>{{ form.name.label }}</td>
                     <td>{{ form.name(id="name") }}</td>
                     <td>{{ form.service.label }}</td>
