@@ -80,9 +80,6 @@ def autorization_user():
     return render_template('authorization.html', form=autorizer_form)
 
 
-
-
-
 @app.route('/registration_user', methods=["GET", "POST"])
 def registration_user():
     form = RegisterForm()
