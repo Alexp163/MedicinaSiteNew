@@ -108,3 +108,4 @@ def patient_data():
 @app.route('/selection_page')
 def selection_page():
     return render_template('selection_page.html')
+
