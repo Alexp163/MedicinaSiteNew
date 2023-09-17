@@ -8,4 +8,3 @@ app.config.from_object(Configuration)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///medicalDB.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
