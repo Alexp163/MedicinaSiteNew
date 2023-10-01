@@ -109,3 +109,6 @@ def patient_data():
 def selection_page():
     return render_template('selection_page.html')
 
+def func_prob():
+    pass
+
