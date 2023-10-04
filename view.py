@@ -109,6 +109,10 @@ def patient_data():
 def selection_page():
     return render_template('selection_page.html')
 
-def func_prob():
-    pass
+
+@app.route('/define_hub') # удалить при возникновении ошибки на запуске main.py
+def define_hub():
+    return render_template('define_hub')
+
+
 
