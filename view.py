@@ -115,4 +115,9 @@ def define_hub():
     return render_template('define_hub')
 
 
+@app.route('/define_nub') # удалить при возникновении ошибки на запуске main.py
+def define_hub():
+    return render_template('define_hub')
+
+
 
