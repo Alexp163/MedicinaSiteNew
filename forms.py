@@ -22,3 +22,6 @@ class MakeAppointment(FlaskForm):
     service = StringField("Вид услуги")
     telnum = TelField("Телефон пациента")
     submit = SubmitField("Записать")
+
+class NewStop(FlaskForm):
+    pass
